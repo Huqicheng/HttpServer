@@ -27,8 +27,14 @@
         <action name="getDatesHavingEvents" class="action.EventAction"  method="getDatesHavingEvents"/>
         
         <action name="getEventsByGroup" class="action.EventAction"  method="getEventsByGroup"/>
+        
+        <action name="getEventsByDate" class="action.EventAction"  method="getEventsByDate"/>
        
-       
+        <action name="assignEvent" class="action.EventAction"  method="assignEvent"/>
+        
+        <action name="deleteEvent" class="action.EventAction"  method="deleteEvent"/>
+        
+         <action name="updateStatusOfEvent" class="action.EventAction"  method="updateStatusOfEvent"/>
     </package>
     
     

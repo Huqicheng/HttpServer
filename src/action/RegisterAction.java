@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import com.google.gson.Gson;
 
 import entity.User;
+import enums.ExecResult;
 
 import service.UserService;
 import utils.StrutsUtil;
@@ -50,7 +51,7 @@ public class RegisterAction {
 		HttpServletResponse response = ServletActionContext.getResponse();   
 		if(username == null || pwd == null || email == null || type == null){
 			try {
-				StrutsUtil.write(response,"failed");
+				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -72,7 +73,6 @@ public class RegisterAction {
 				e.printStackTrace();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

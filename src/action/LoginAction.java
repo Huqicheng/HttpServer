@@ -15,6 +15,7 @@ import utils.MD5Utils;
 import utils.StrutsUtil;
 
 import entity.User;
+import enums.ExecResult;
 import enums.LoginType;
 
 public class LoginAction {
@@ -48,7 +49,7 @@ public class LoginAction {
 		if(username == null || pwd == null || type == null){
 			
 			try {
-				StrutsUtil.write(response,"failed");
+				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -75,7 +76,7 @@ public class LoginAction {
 		
 		try {
 			if(res == null){
-				StrutsUtil.write(response,"failed");
+				StrutsUtil.write(response,ExecResult.failed.toString());
 			}else{
 				StrutsUtil.write(response,new Gson().toJson(res));
 			}

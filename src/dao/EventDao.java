@@ -25,7 +25,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: getDatesHavingEvents 
-	* @Description: TODO
+	* @Description: get timestamp of dates which have >= 1 events given status
 	* @param @param user_id
 	* @param @param status
 	* @param @return
@@ -59,7 +59,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: getEventsOfOneDate 
-	* @Description: TODO 
+	* @Description: get Event List of one user in one date  
 	* @param @param user_id
 	* @param @param date
 	* @param @return
@@ -73,8 +73,7 @@ private Dbconn db = null;
 		CallableStatement c = null;
 		
 		try {
-			// TODO implement this procedure
-			c = conn.prepareCall("{call get_events_of_one_date(?,?)}");
+			c = conn.prepareCall("{call get_event_by_date(?,?)}");
 			c.setInt(1, user_id);
 			c.setDate(2, new java.sql.Date(date.getTime()));
 			
@@ -107,7 +106,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: updateStatusOfEvent 
-	* @Description: TODO 
+	* @Description: update status of one event given id 
 	* @param @param eventId
 	* @param @throws SQLException    
 	* @return void    
@@ -135,7 +134,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: deleteEvent 
-	* @Description: TODO 
+	* @Description: delete one event given id 
 	* @param @param eventId
 	* @param @throws SQLException    
 	* @return void    
@@ -146,7 +145,6 @@ private Dbconn db = null;
 		CallableStatement c = null;
 		
 		try {
-			// TODO implement this procedure
 			c = conn.prepareCall("{call delete_event(?)}");
 			c.setInt(1, eventId);
 			c.executeUpdate();
@@ -163,7 +161,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: assignEvent 
-	* @Description: TODO 
+	* @Description: assign an event 
 	* @param @param event
 	* @param @return
 	* @param @throws SQLException    
@@ -200,7 +198,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: getEventById 
-	* @Description: TODO 
+	* @Description: get and event object given event_id 
 	* @param @param eventId
 	* @param @return
 	* @param @throws SQLException    
@@ -245,7 +243,7 @@ private Dbconn db = null;
 	
 	/** 
 	* @Title: getEventByGroup 
-	* @Description: TODO 
+	* @Description: get event list of one user given group_id 
 	* @param @param user_id
 	* @param @param group_id
 	* @param @return
