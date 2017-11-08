@@ -291,6 +291,10 @@ private void closeConnection(Connection conn) {
   }
 }
 
+@Override
+protected void finalize() throws Throwable {
+	this.closeConnectionPool();
+}
 private void wait(int mSeconds) {
   try {
       Thread.sleep(mSeconds);

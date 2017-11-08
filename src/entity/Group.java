@@ -13,10 +13,19 @@ public class Group implements java.io.Serializable{
     long createdAt;
     long updatedAt;
     int projectId;
+    String cover;
     
     
 
-    public int getProjectId() {
+    public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public int getProjectId() {
 		return projectId;
 	}
 

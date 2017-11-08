@@ -49,6 +49,7 @@ public class GroupDao {
 				group.setProjectId(rs.getInt("project_id"));
 				group.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
 				group.setCreatedAt(rs.getTimestamp("createdAt").getTime());
+				group.setCover(rs.getString("cover"));
 				groups.add(group);
 			}
 			
