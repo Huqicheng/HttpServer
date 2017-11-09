@@ -23,6 +23,13 @@
        
        <action name="getUsersOfGroup" class="action.GroupChatAction"  method="getUsersOfGroup"/>
        
+       <action name="getMsgs" class="action.GroupChatAction"  method="getMsgs"/>
+       
+       <action name="dropFromGroup" class="action.GroupAction"  method="dropFromGroup"/>
+       <action name="joinGroup" class="action.GroupAction"  method="joinGroup"/>
+       
+       
+       
        
         <action name="getDatesHavingEvents" class="action.EventAction"  method="getDatesHavingEvents"/>
         

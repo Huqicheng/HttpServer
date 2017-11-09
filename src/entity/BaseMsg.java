@@ -14,20 +14,45 @@ public class BaseMsg  implements Serializable {
     private MsgType type;
     private String clientId;
     private String groupId;
-    Date date;
+    long date;
+    String avator;
     private Map<String,Object> params;
     
     public BaseMsg() {
         params = new HashMap<String,Object>();
     }
     
-    public Date getDate() {
+    
+
+	public String getAvator() {
+		return avator;
+	}
+
+
+
+	public void setAvator(String avator) {
+		this.avator = avator;
+	}
+
+
+
+	public void setParams(Map<String, Object> params) {
+		this.params = params;
+	}
+
+
+
+	public long getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+
+
+	public void setDate(long date) {
 		this.date = date;
 	}
+
+
 
 	public String getClientId() {
         return clientId;
