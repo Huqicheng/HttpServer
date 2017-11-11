@@ -48,7 +48,7 @@ public class UserDao {
 				user.setFacebook(rs.getString("facebook"));
 				user.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				user.setUpdateAt(rs.getTimestamp("updatedAt").getTime());
-				// TODO set avator
+				user.setAvatar(rs.getString("avatar"));
 				return user;
 			}
 			return null;

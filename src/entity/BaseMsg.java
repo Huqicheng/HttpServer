@@ -15,7 +15,7 @@ public class BaseMsg  implements Serializable {
     private String clientId;
     private String groupId;
     long date;
-    String avator;
+    String avatar;
     private Map<String,Object> params;
     
     public BaseMsg() {
@@ -24,14 +24,14 @@ public class BaseMsg  implements Serializable {
     
     
 
-	public String getAvator() {
-		return avator;
+	public String getAvatar() {
+		return avatar;
 	}
 
 
 
-	public void setAvator(String avator) {
-		this.avator = avator;
+	public void setAvator(String avatar) {
+		this.avatar = avatar;
 	}
 
 
