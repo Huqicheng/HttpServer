@@ -42,6 +42,8 @@
         <action name="deleteEvent" class="action.EventAction"  method="deleteEvent"/>
         
          <action name="updateStatusOfEvent" class="action.EventAction"  method="updateStatusOfEvent"/>
+         
+          <action name="updateEvent" class="action.EventAction"  method="updateEvent"/>
     </package>
     
     

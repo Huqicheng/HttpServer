@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Event implements java.io.Serializable{
     long eventID;
-    String title;
+	String title;
     String description;
     long deadLine;
     int assignedBy;
@@ -119,23 +119,14 @@ public class Event implements java.io.Serializable{
         return title;
     }
 
-    public String geteventDescription() {
-        return description;
-    }
+	public void setEventID(long eventID) {
+		this.eventID = eventID;
+	}
 
-    public long getEventId() {
-        return eventID;
-    }
-
-    public void setEventID(long groupId) {
-        this.eventID = groupId;
-    }
-
+   
     public void setEventTitle(String eventTitle) {
         this.title = eventTitle;
     }
 
-    public void setEventDescription(String eventDescription) {
-        this.description = eventDescription;
-    }
+    
 }

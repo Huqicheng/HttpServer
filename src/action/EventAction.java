@@ -22,15 +22,55 @@ public class EventAction {
 	String jsonEvent;
 	
 	int user_id;
+	
 	String status;
 	
 	int group_id;
 	
 	long timestamp;
 	
+	
+	
+	/*
+	 * for update
+	 */
 	int event_id;
+	int assignTo;
+	String title;
+	String description;
+	long deadline;
 	
 	
+	public int getEvent_id() {
+		return event_id;
+	}
+	public void setEvent_id(int event_id) {
+		this.event_id = event_id;
+	}
+	public int getAssignTo() {
+		return assignTo;
+	}
+	public void setAssignTo(int assignTo) {
+		this.assignTo = assignTo;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public long getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(long deadline) {
+		this.deadline = deadline;
+	}
 	public long getTimestamp() {
 		return timestamp;
 	}
@@ -73,7 +113,36 @@ public class EventAction {
 			return;
 			
 		}
-		Event event = new Gson().fromJson(jsonEvent, Event.class);
+		Event event = null;
+		try{
+			event = new Gson().fromJson(jsonEvent, Event.class);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if(event == null){
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}else{
+			if(event.getAssignedBy() == 0 ||
+					event.getAssignedTo() == 0||
+					event.getDeadLine() == 0||
+					event.getDescription() == null||
+					event.getTitle() == null||
+					event.getGroupId() == 0){
+				
+				try {
+					StrutsUtil.write(response,ExecResult.failed.toString());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return;
+			}
+		}
 		Event ultimate = null;
 		try {
 			ultimate = new EventService().assignEvent(event);
@@ -214,6 +283,35 @@ public class EventAction {
 		}else{
 			try {
 				StrutsUtil.write(response,ExecResult.success.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void updateEvent(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		if(event_id == 0 || assignTo == 0 || title == null || description == null || deadline == 0){
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+			
+		}
+		
+		Event event = new EventService().updateEvent(event_id, description, title, assignTo, deadline);
+		
+		if(event == null){
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else{
+			try {
+				StrutsUtil.write(response,new Gson().toJson(event));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -29,10 +29,7 @@ public class EventService {
 	}
 	
 	public Event assignEvent(Event event) throws SQLException{
-		int id = eventDao.assignEvent(event);
-		
-		return eventDao.getEventById(id);
-		
+		return eventDao.assignEvent(event);
 		
 	}
 	
@@ -74,6 +71,18 @@ public class EventService {
 		return false;
 	}
 	
+	public Event updateEvent(int event_id, String discription,String title, int assignTo, long deadline){
+		try {
+			return eventDao.updateEvent(event_id, discription, title, assignTo,deadline);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		Event event = new Event();
 		event.setAssignedBy(2);
@@ -86,7 +95,9 @@ public class EventService {
 		System.out.println(new Gson().toJson(event));
 		
 		EventService es = new EventService();
-		//System.out.println(es.assignEvent(event).getGroupName());
+		
+		//System.out.println(es.updateEvent(1, "new", "new task", 2,new Date().getTime()));
+		System.out.println(es.assignEvent(event).getGroupName());
 		
 		//System.out.println(es.getEventByGroup(2,2).size());
 		

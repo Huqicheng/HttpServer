@@ -85,7 +85,7 @@ private Dbconn db = null;
 				event.setGroupId(rs.getInt("group_id"));
 				event.setEventID(rs.getInt("id"));
 				event.setEventTitle(rs.getString("eventName"));
-				event.setEventDescription(rs.getString("eventDescription"));
+				event.setDescription(rs.getString("eventDescription"));
 				event.setDeadLine(rs.getTimestamp("eventDeadLine").getTime());
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
@@ -117,7 +117,6 @@ private Dbconn db = null;
 		CallableStatement c = null;
 		
 		try {
-			// TODO implement this procedure
 			c = conn.prepareCall("{call update_status_of_event(?,?)}");
 			c.setInt(1, eventId);
 			c.setString(2, status);
@@ -168,23 +167,39 @@ private Dbconn db = null;
 	* @return int    0 - assign failed    >0 - id of this event
 	* @throws 
 	*/
-	public int assignEvent(Event event) throws SQLException{
+	public Event assignEvent(Event event) throws SQLException{
 		Connection conn = db.getConnection();
 		CallableStatement c = null;
-		
+		Event res = null;
 		try {
-			c = conn.prepareCall("{call assign_event(?,?,?,?,?,?,?,?)}");
+			c = conn.prepareCall("{call assign_event(?,?,?,?,?,?,?)}");
 			c.setLong(1, event.getGroupId());
 			c.setString(2, event.getEventTitle());
-			c.setString(3, event.geteventDescription());
-			c.setDate(4, new java.sql.Date(event.getDeadLine()));
+			c.setString(3, event.getDescription());
+			c.setTimestamp(4, new java.sql.Timestamp(event.getDeadLine()));
 			c.setInt(5, event.getAssignedBy());
 			c.setString(6, EventStatus.started.toString());
 			c.setInt(7, event.getAssignedTo());
-			c.registerOutParameter(8, Types.INTEGER);
-			c.execute();
 			
-			return c.getInt(8);
+			ResultSet rs = c.executeQuery();
+			
+			if(rs.next()){
+				res = new Event();
+				res.setAssignedBy(rs.getInt("assignedBy"));
+				res.setAssignedTo(rs.getInt("assignedTo"));
+				res.setGroupId(rs.getInt("group_id"));
+				res.setEventID(rs.getInt("id"));
+				res.setEventTitle(rs.getString("eventName"));
+				res.setDescription(rs.getString("eventDescription"));
+				res.setDeadLine(rs.getTimestamp("eventDeadLine").getTime());
+				res.setEventStatus(rs.getString("eventStatus"));
+				res.setCreatedAt(rs.getTimestamp("createdAt").getTime());
+				res.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
+				
+				res.setGroupName(rs.getString("groupName"));
+			}
+			
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,7 +208,7 @@ private Dbconn db = null;
 			db.dispose();
 		}
 		
-		return 0;
+		return res;
 	}
 	
 	/** 
@@ -221,7 +236,7 @@ private Dbconn db = null;
 				event.setGroupId(rs.getInt("group_id"));
 				event.setEventID(rs.getInt("id"));
 				event.setEventTitle(rs.getString("eventName"));
-				event.setEventDescription(rs.getString("eventDescription"));
+				event.setDescription(rs.getString("eventDescription"));
 				event.setDeadLine(rs.getTimestamp("eventDeadLine").getTime());
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
@@ -268,7 +283,7 @@ private Dbconn db = null;
 				event.setGroupId(rs.getInt("group_id"));
 				event.setEventID(rs.getInt("id"));
 				event.setEventTitle(rs.getString("eventName"));
-				event.setEventDescription(rs.getString("eventDescription"));
+				event.setDescription(rs.getString("eventDescription"));
 				event.setDeadLine(rs.getTimestamp("eventDeadLine").getTime());
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
@@ -287,6 +302,43 @@ private Dbconn db = null;
 		}
 		return events;
 	}
-	//TODO update an event
-	
+
+	public Event updateEvent(int event_id, String discription,String title, int assignTo,long deadline) throws SQLException{
+		Connection conn = db.getConnection();
+		CallableStatement c = null;
+		Event event = null;
+		
+		try {
+			c = conn.prepareCall("{call update_event(?,?,?,?,?)}");
+			c.setInt(1, event_id);
+			c.setInt(2, assignTo);
+			c.setString(3, title);
+			c.setString(4, discription);
+			c.setTimestamp(5, new java.sql.Timestamp(deadline));
+			ResultSet rs = c.executeQuery();
+			if(rs.next()){
+				event = new Event();
+				event.setAssignedBy(rs.getInt("assignedBy"));
+				event.setAssignedTo(rs.getInt("assignedTo"));
+				event.setGroupId(rs.getInt("group_id"));
+				event.setEventID(rs.getInt("id"));
+				event.setEventTitle(rs.getString("eventName"));
+				event.setDescription(rs.getString("eventDescription"));
+				event.setDeadLine(rs.getTimestamp("eventDeadLine").getTime());
+				event.setEventStatus(rs.getString("eventStatus"));
+				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
+				event.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
+				
+				event.setGroupName(rs.getString("groupName"));
+				
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			c.close();
+			db.dispose();
+		}
+		return event;
+	}
 }
