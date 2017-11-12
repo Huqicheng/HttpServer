@@ -133,7 +133,7 @@ public class GroupDao {
 		CallableStatement c = null;
 		
 		try {
-			c = conn.prepareCall("{call drop_a_group(?,?)}");
+			c = conn.prepareCall("{call drop_a_group(?)}");
 			c.setInt(1, group_id);
 			
 			c.executeUpdate();
@@ -155,7 +155,7 @@ public class GroupDao {
 		CallableStatement c = null;
 		
 		try {
-			c = conn.prepareCall("{call join_a_group(?,?)}");
+			c = conn.prepareCall("{call join_a_group(?)}");
 			c.setInt(1, group_id);
 			
 			c.executeUpdate();
