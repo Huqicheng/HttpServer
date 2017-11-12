@@ -31,7 +31,7 @@ public class Dbconn {
 	  }
 	  catch(Exception e)
 	  {
-		  System.out.println("加载驱动异常 "+e.toString());
+		  System.out.println("Failed to load the driver: "+e.toString());
 	  }
 	  
 	  try {
@@ -72,7 +72,7 @@ public class Dbconn {
 	  catch(Exception e)
 	  {
 		  
-		  System.out.println("查询异常 "+e.toString());
+		  System.out.println("Failed to query: "+e.toString());
 	  }finally{
 		  this.dispose();
 	  }
@@ -106,7 +106,7 @@ public class Dbconn {
 	  }
 	  catch(Exception e)
 	  {
-		  System.out.println("存储过程执行异常 "+e.toString());
+		  System.out.println("Failed to call the proc: "+e.toString());
 	  }
 	  
 	  return rs;
@@ -125,7 +125,7 @@ public class Dbconn {
 	  catch(Exception e)
 	  {
 		  this.dispose();
-		  System.out.println("更新异常 "+e.toString());
+		  System.out.println("Failed to update: "+e.toString());
 		  throw new Exception(e);
 	  }
 	  
