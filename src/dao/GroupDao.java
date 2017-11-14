@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.google.gson.reflect.*;
 
 import entity.BaseMsg;
 import entity.Group;
+import entity.Project;
 import entity.User;
 import enums.MsgType;
 
@@ -105,8 +107,7 @@ public class GroupDao {
 				user.setEmail(rs.getString("email"));
 				user.setUsername(rs.getString("username"));
 				user.setFacebook(rs.getString("facebook"));
-				
-				//TODO blob of avatar
+				user.setAvatar(rs.getString("avatar"));
 				users.add(user);
 			}
 			
@@ -212,5 +213,97 @@ public class GroupDao {
 			db.dispose();
 		}
 		return msgs;
+	}
+	
+	
+	
+	public void deleteGroup(int group_id) throws SQLException{
+		Connection conn = db.getConnection();
+		CallableStatement c = null;
+		
+		try {
+			c = conn.prepareCall("{call delete_a_group(?)}");
+			c.setInt(1, group_id);
+			
+			c.executeUpdate();
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			
+			c.close();
+			
+			db.dispose();
+		}
+	}
+
+	public int addProject(String projectName, String projectDescription,
+			long projectDeadline,int creator) throws SQLException {
+		Connection conn = db.getConnection();
+		CallableStatement c = null;
+		try {
+			
+			c = conn.prepareCall("{call add_a_project(?,?,?,?,?)}");
+			c.setString(1, projectName);
+			c.setString(2, projectDescription);
+			c.setTimestamp(3, new java.sql.Timestamp(projectDeadline));
+			c.setInt(4, creator);
+			c.registerOutParameter(5, Types.INTEGER);
+			c.executeUpdate();
+			
+			return c.getInt(5);
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			
+			c.close();
+			
+			db.dispose();
+		}
+		
+		return 0;
+	}
+
+	public Group addGroup(String groupName, String groupDescription, int projectId,int creatorId) throws SQLException {
+		Connection conn = db.getConnection();
+		CallableStatement c = null;
+		Group group = null;
+		try {
+			// TODO implement proc
+			c = conn.prepareCall("{call add_group(?,?,?,?)}");
+			c.setString(1, groupName);
+			c.setString(2, groupDescription);
+			c.setInt(3, projectId);
+			c.setInt(4, creatorId);
+			
+			ResultSet rs = c.executeQuery();
+			
+			if(rs.next()){
+				group = new Group();
+				group.setGroupId(rs.getLong("id"));
+				group.setGroupDescription("groupDescription");
+				group.setGroupName("groupName");
+				group.setProjectId(rs.getInt("project_id"));
+				group.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
+				group.setCreatedAt(rs.getTimestamp("createdAt").getTime());
+				group.setCover(rs.getString("cover"));
+				group.setCreatorId(rs.getInt("creator"));
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			
+			c.close();
+			
+			db.dispose();
+		}
+		
+		
+		return group;
 	}
 }

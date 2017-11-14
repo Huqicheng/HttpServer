@@ -2,6 +2,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dao.GroupDao;
@@ -9,6 +10,7 @@ import dao.GroupDao;
 import entity.BaseMsg;
 import entity.Group;
 import entity.MsgList;
+import entity.Project;
 import entity.User;
 
 public class GroupService {
@@ -79,6 +81,31 @@ public class GroupService {
 		return false;
 	}
 	
+	public boolean deleteGroup(int group_id){
+		try {
+			groupDao.deleteGroup(group_id);
+			return true;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public Group addGroup(String projectName, String projectDescription, long projectDeadline,int creatorId) throws SQLException{
+		int projectId = groupDao.addProject(projectName,projectDescription,projectDeadline,creatorId);
+		if(projectId == 0){
+			return null;
+		}
+		String groupName = "Group For "+projectName;
+		String groupDescription = projectDescription;
+		
+		Group group = groupDao.addGroup(groupName,groupDescription,projectId,creatorId);
+		
+		return group;
+		
+	}
+	
 	public MsgList getMsgs(int group_id,long timestamp,int cnt){
 		List<BaseMsg> msgs = null;
 		
@@ -103,5 +130,12 @@ public class GroupService {
 		}
 		
 		return list;
+	}
+	
+	
+	public static void main(String[] args) throws SQLException {
+		GroupService gs = new GroupService();
+		Group g = gs.addGroup("test service", "desc", new Date().getTime(), 2);
+		System.out.println(g.getCreatorId());
 	}
 }

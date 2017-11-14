@@ -12,12 +12,25 @@ public class Group implements java.io.Serializable{
     String groupDescription;
     long createdAt;
     long updatedAt;
-    int projectId;
+    long projectId;
+    long creatorId;
     String cover;
     
     
 
-    public String getCover() {
+    public long getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(long creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
+	}
+
+	public String getCover() {
 		return cover;
 	}
 
@@ -25,13 +38,11 @@ public class Group implements java.io.Serializable{
 		this.cover = cover;
 	}
 
-	public int getProjectId() {
+	public long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
+	
 
 	public long getGroupId() {
         return groupId;

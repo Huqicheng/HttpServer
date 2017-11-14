@@ -27,8 +27,8 @@
        
        <action name="dropFromGroup" class="action.GroupAction"  method="dropFromGroup"/>
        <action name="joinGroup" class="action.GroupAction"  method="joinGroup"/>
-       
-       
+       <action name="deleteGroup" class="action.GroupAction"  method="deleteGroup"/>
+       <action name="addGroup" class="action.GroupAction"  method="addGroup"/>
        
        
         <action name="getDatesHavingEvents" class="action.EventAction"  method="getDatesHavingEvents"/>

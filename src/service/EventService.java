@@ -65,7 +65,6 @@ public class EventService {
 			eventDao.updateStatusOfEvent(event_id, status);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
