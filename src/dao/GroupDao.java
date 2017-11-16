@@ -54,7 +54,7 @@ public class GroupDao {
 				Group group = new Group();
 				group.setGroupId(rs.getLong("id"));
 				group.setGroupDescription("groupDescription");
-				group.setGroupName("groupName");
+				group.setGroupName(rs.getString("groupName"));
 				group.setProjectId(rs.getInt("project_id"));
 				group.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
 				group.setCreatedAt(rs.getTimestamp("createdAt").getTime());
@@ -134,8 +134,9 @@ public class GroupDao {
 		CallableStatement c = null;
 		
 		try {
-			c = conn.prepareCall("{call drop_a_group(?)}");
+			c = conn.prepareCall("{call drop_a_group(?,?)}");
 			c.setInt(1, group_id);
+			c.setInt(2, user_id);
 			
 			c.executeUpdate();
 			
@@ -156,8 +157,9 @@ public class GroupDao {
 		CallableStatement c = null;
 		
 		try {
-			c = conn.prepareCall("{call join_a_group(?)}");
+			c = conn.prepareCall("{call join_a_group(?,?)}");
 			c.setInt(1, group_id);
+			c.setInt(2, user_id);
 			
 			c.executeUpdate();
 			

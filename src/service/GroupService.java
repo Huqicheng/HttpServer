@@ -72,7 +72,7 @@ public class GroupService {
 	
 	public boolean joinGroup(int group_id, int user_id){
 		try {
-			groupDao.dropFromGroup(group_id, user_id);
+			groupDao.joinGroup(group_id, user_id);
 			return true;
 		} catch (SQLException e) {
 			

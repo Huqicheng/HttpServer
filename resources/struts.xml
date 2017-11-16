@@ -14,15 +14,16 @@
        
        <!-- product relative  begin -->
        
+       <!-- for test -->
        <action name="write" class="action.JsonAction"  method="write"/>  
        
+       
        <action name="doLogin" class="action.LoginAction"  method="doLogin"/> 
+       
        <action name="doRegister" class="action.RegisterAction"  method="doRegister"/> 
        
        <action name="getGroupOfUser" class="action.GroupChatAction"  method="getGroupOfUser"/> 
-       
        <action name="getUsersOfGroup" class="action.GroupChatAction"  method="getUsersOfGroup"/>
-       
        <action name="getMsgs" class="action.GroupChatAction"  method="getMsgs"/>
        
        <action name="dropFromGroup" class="action.GroupAction"  method="dropFromGroup"/>
@@ -31,19 +32,18 @@
        <action name="addGroup" class="action.GroupAction"  method="addGroup"/>
        
        
-        <action name="getDatesHavingEvents" class="action.EventAction"  method="getDatesHavingEvents"/>
-        
-        <action name="getEventsByGroup" class="action.EventAction"  method="getEventsByGroup"/>
-        
-        <action name="getEventsByDate" class="action.EventAction"  method="getEventsByDate"/>
+       <action name="getDatesHavingEvents" class="action.EventAction"  method="getDatesHavingEvents"/>
+       <action name="getEventsByGroup" class="action.EventAction"  method="getEventsByGroup"/>
+       <action name="getEventsByDate" class="action.EventAction"  method="getEventsByDate"/>
+       <action name="assignEvent" class="action.EventAction"  method="assignEvent"/>
+       <action name="deleteEvent" class="action.EventAction"  method="deleteEvent"/>
+       <action name="updateStatusOfEvent" class="action.EventAction"  method="updateStatusOfEvent"/>
+       <action name="updateEvent" class="action.EventAction"  method="updateEvent"/>
        
-        <action name="assignEvent" class="action.EventAction"  method="assignEvent"/>
-        
-        <action name="deleteEvent" class="action.EventAction"  method="deleteEvent"/>
-        
-         <action name="updateStatusOfEvent" class="action.EventAction"  method="updateStatusOfEvent"/>
-         
-          <action name="updateEvent" class="action.EventAction"  method="updateEvent"/>
+       <action name="getApplications" class="action.ApplicationAction"  method="getApplications"/>
+       <action name="addApplicaton" class="action.ApplicationAction"  method="addApplicaton"/>
+       <action name="finishApplication" class="action.ApplicationAction"  method="finishApplication"/>
+       
     </package>
     
     
