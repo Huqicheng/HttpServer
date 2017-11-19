@@ -33,9 +33,9 @@ public class EventService {
 		
 	}
 	
-	public List<Event> getEventByGroup(int user_id, int group_id){
+	public List<Event> getEventByGroup(int user_id, int group_id,String status){
 		try {
-			return eventDao.getEventByGroup(user_id, group_id);
+			return eventDao.getEventByGroup(user_id, group_id,status);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,6 +63,19 @@ public class EventService {
 	public boolean updateStatusOfEvent(int event_id,String status){
 		try {
 			eventDao.updateStatusOfEvent(event_id, status);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean updateStatusOfEventBatches(List<Integer> eventIds, String status){
+		try {
+			for(Integer id:eventIds){
+				eventDao.updateStatusOfEvent(id, status);
+			}
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -41,6 +41,7 @@
        <action name="deleteEvent" class="action.EventAction"  method="deleteEvent"/>
        <action name="updateStatusOfEvent" class="action.EventAction"  method="updateStatusOfEvent"/>
        <action name="updateEvent" class="action.EventAction"  method="updateEvent"/>
+       <action name="updateEventBatches" class="action.EventAction" method="updateEventBatches"/>
        
        <action name="getApplications" class="action.ApplicationAction"  method="getApplications"/>
        <action name="addApplicaton" class="action.ApplicationAction"  method="addApplicaton"/>

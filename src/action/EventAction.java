@@ -2,6 +2,7 @@ package action;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import entity.Event;
 import enums.EventStatus;
@@ -29,8 +31,16 @@ public class EventAction {
 	
 	long timestamp;
 	
+
+	String arrEvents;
 	
-	
+	public String getArrEvents() {
+		return arrEvents;
+	}
+	public void setArrEvents(String arrEvents) {
+		this.arrEvents = arrEvents;
+	}
+
 	/*
 	 * for update
 	 */
@@ -101,6 +111,50 @@ public class EventAction {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public void updateEventBatches(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		System.out.println(status);
+		if(arrEvents == null || status == null || 
+				(!status.equals(EventStatus.started.toString() )&& !status.equals(EventStatus.finished.toString()))){
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		ArrayList<Integer> arr = new Gson().fromJson(arrEvents, new TypeToken<ArrayList<Integer>>(){}.getType());
+		System.out.println(arr);
+		if(arr == null){
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		boolean res = new EventService().updateStatusOfEventBatches(arr,status);
+		
+		if(res){
+			try {
+				StrutsUtil.write(response,ExecResult.success.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}else{
+			try {
+				StrutsUtil.write(response,ExecResult.failed.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+	}
+	
 	
 	public void assignEvent(){
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -189,7 +243,7 @@ public class EventAction {
 	
 	public void getEventsByGroup(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-		if(user_id == 0 || group_id == 0){
+		if(user_id == 0 || group_id == 0 || status == null){
 			try {
 				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
@@ -199,7 +253,7 @@ public class EventAction {
 			
 		}
 		
-		List<Event> events = new EventService().getEventByGroup(user_id, group_id);
+		List<Event> events = new EventService().getEventByGroup(user_id, group_id,status);
 		
 		try {
 			StrutsUtil.write(response,new Gson().toJson(events));
@@ -262,7 +316,7 @@ public class EventAction {
 	
 	public void updateStatusOfEvent(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-		if(event_id == 0 || status == null || (!status.equals(EventStatus.started )&& !status.equals(EventStatus.finished))){
+		if(event_id == 0 || status == null || (!status.equals(EventStatus.started.toString() )&& !status.equals(EventStatus.finished.toString()))){
 			try {
 				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {

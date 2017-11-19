@@ -266,15 +266,16 @@ private Dbconn db = null;
 	* @return List<Event>    
 	* @throws 
 	*/
-	public List<Event> getEventByGroup(int user_id, int group_id) throws SQLException{
+	public List<Event> getEventByGroup(int user_id, int group_id,String status) throws SQLException{
 		Connection conn = db.getConnection();
 		CallableStatement c = null;
 		List<Event> events = new ArrayList<Event>();
 		
 		try {
-			c = conn.prepareCall("{call get_event_by_group(?,?)}");
+			c = conn.prepareCall("{call get_event_by_group(?,?,?)}");
 			c.setInt(1, group_id);
 			c.setInt(2, user_id);
+			c.setString(3, status);
 			ResultSet rs = c.executeQuery();
 			while(rs.next()){
 				Event event = new Event();

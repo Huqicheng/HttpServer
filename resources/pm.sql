@@ -10,9 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50627
 File Encoding         : 65001
 
-Date: 2017-11-18 19:36:13
+Date: 2017-11-19 14:31:52
 */
-use pm;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -61,8 +61,8 @@ CREATE TABLE `event` (
 -- ----------------------------
 -- Records of event
 -- ----------------------------
-INSERT INTO `event` VALUES ('1', '2', 'new task', 'new', '2017-12-17 15:15:00', '2', 'started', '2017-11-04 23:42:05', '2', '2017-11-16 14:51:20');
-INSERT INTO `event` VALUES ('2', '2', 'newtitle', 'newdescription', '2017-11-05 00:00:00', '2', 'started', '2017-11-04 23:42:29', '2', '2017-11-11 18:53:13');
+INSERT INTO `event` VALUES ('1', '2', 'new task', 'new', '2017-12-17 15:15:00', '2', 'finished', '2017-11-04 23:42:05', '2', '2017-11-19 14:20:27');
+INSERT INTO `event` VALUES ('2', '2', 'newtitle', 'newdescription', '2017-11-05 00:00:00', '2', 'finished', '2017-11-04 23:42:29', '2', '2017-11-19 14:20:27');
 INSERT INTO `event` VALUES ('3', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:05:58', '2', '2017-11-05 13:05:58');
 INSERT INTO `event` VALUES ('4', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:46:09', '2', '2017-11-05 13:46:09');
 INSERT INTO `event` VALUES ('5', '2', 'title2', '232323', '2017-11-11 18:04:02', '2', 'started', '2017-11-11 18:04:02', '2', '2017-11-11 18:04:02');
@@ -84,7 +84,7 @@ CREATE TABLE `group` (
   PRIMARY KEY (`id`),
   KEY `group_project` (`project_id`),
   CONSTRAINT `group_project` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of group
@@ -94,6 +94,7 @@ INSERT INTO `group` VALUES ('images/group/2.gif', '2', 'G8', 'description', '2',
 INSERT INTO `group` VALUES (null, '3', 'Group For test service', 'desc', '3', '2017-11-14 10:44:45', '2017-11-14 10:44:45');
 INSERT INTO `group` VALUES (null, '4', 'Group For test service', 'desc', '4', '2017-11-14 10:49:16', '2017-11-14 10:49:16');
 INSERT INTO `group` VALUES (null, '5', 'Group For test service', 'desc', '7', '2017-11-14 10:56:34', '2017-11-14 10:56:34');
+INSERT INTO `group` VALUES (null, '6', 'Group For 5555555555555', '66666666666666', '8', '2017-11-19 11:41:18', '2017-11-19 11:41:18');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -217,7 +218,7 @@ CREATE TABLE `project` (
   PRIMARY KEY (`id`),
   KEY `project_user` (`creator`),
   CONSTRAINT `project_user` FOREIGN KEY (`creator`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of project
@@ -229,6 +230,7 @@ INSERT INTO `project` VALUES ('4', 'test service', 'desc', '2017-11-14 10:49:16'
 INSERT INTO `project` VALUES ('5', 'test service', 'desc', '2017-11-14 10:55:08', '2', '2017-11-14 10:55:08', '2017-11-14 10:55:08');
 INSERT INTO `project` VALUES ('6', 'test service', 'desc', '2017-11-14 10:56:06', '2', '2017-11-14 10:56:06', '2017-11-14 10:56:06');
 INSERT INTO `project` VALUES ('7', 'test service', 'desc', '2017-11-14 10:56:34', '2', '2017-11-14 10:56:34', '2017-11-14 10:56:34');
+INSERT INTO `project` VALUES ('8', '5555555555555', '66666666666666', '2017-12-20 00:00:00', '2', '2017-11-19 11:41:18', '2017-11-19 11:41:18');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -276,6 +278,7 @@ INSERT INTO `user_group` VALUES ('2', '2');
 INSERT INTO `user_group` VALUES ('3', '2');
 INSERT INTO `user_group` VALUES ('4', '2');
 INSERT INTO `user_group` VALUES ('5', '2');
+INSERT INTO `user_group` VALUES ('6', '2');
 INSERT INTO `user_group` VALUES ('2', '3');
 INSERT INTO `user_group` VALUES ('3', '3');
 INSERT INTO `user_group` VALUES ('4', '3');
@@ -348,7 +351,7 @@ select max(id) into gid from `group`;
 
 insert into user_group(user_id, group_id) values(creator,gid);
 
-select `group`.*, creator, projectDeadline
+select `group`.*, creator, projectDeadline,projectName
 from `group`,project
 where `group`.project_id = project.id
 and `group`.id =gid;
@@ -542,7 +545,8 @@ DROP PROCEDURE IF EXISTS `get_event_by_group`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_event_by_group`(
 IN groupId int,
-IN userId int
+IN userId int,
+IN stat varchar(255)
 )
 BEGIN
 
@@ -550,7 +554,8 @@ select event.*,groupName
 from event,`group`
 where event.assignedTo = userId
 and event.group_id = `group`.id
-and `group`.id = groupId;
+and `group`.id = groupId
+and eventStatus = stat;
 
 end
 ;;
@@ -583,7 +588,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_groups_of_user`(
 IN user_id int
 )
 BEGIN   
-	SELECT  g.*,creator,projectDeadline
+	SELECT  g.*,creator,projectDeadline,projectName
 FROM `user` AS u, user_group AS ug, `group` AS g, project as p
   WHERE ug.user_id = u.id and u.id=user_id and g.id=ug.group_id and p.id = g.project_id;
 END
