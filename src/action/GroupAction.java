@@ -29,6 +29,30 @@ public class GroupAction {
 	int creator_id;
 	
 	
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public String getProjectDescription() {
+		return projectDescription;
+	}
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
+	}
+	public long getProjectDeadline() {
+		return projectDeadline;
+	}
+	public void setProjectDeadline(long projectDeadline) {
+		this.projectDeadline = projectDeadline;
+	}
+	public int getCreator_id() {
+		return creator_id;
+	}
+	public void setCreator_id(int creator_id) {
+		this.creator_id = creator_id;
+	}
 	public int getUser_id() {
 		return user_id;
 	}
