@@ -59,6 +59,9 @@ public class GroupDao {
 				group.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
 				group.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				group.setCover(rs.getString("cover"));
+				group.setCreatorId(rs.getInt("creator"));
+				group.setDeadline(rs.getTimestamp("projectDeadline").getTime());
+				
 				groups.add(group);
 			}
 			
@@ -293,6 +296,7 @@ public class GroupDao {
 				group.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				group.setCover(rs.getString("cover"));
 				group.setCreatorId(rs.getInt("creator"));
+				group.setDeadline(rs.getTimestamp("projectDeadline").getTime());
 			}
 			
 		

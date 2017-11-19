@@ -1,6 +1,8 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.UserDao;
 import entity.User;
@@ -30,6 +32,16 @@ public class UserService {
 		return null;
 		
 		
+	}
+	
+	public List<User> getUsers(String username){
+		try {
+			return userDao.getUsers(username);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ArrayList<User>();
 	}
 	
 	public User doRegister(User user) throws SQLException{

@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import entity.User;
@@ -66,6 +68,7 @@ public class UserDao {
 		
 	}
 
+	
 	/**
 	 * @Title: doLoginByEmail
 	 * @Description: user login by email and pwd
@@ -95,7 +98,7 @@ public class UserDao {
 				user.setFacebook(rs.getString("facebook"));
 				user.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				user.setUpdateAt(rs.getTimestamp("updatedAt").getTime());
-				// TODO set avator
+				user.setAvatar(rs.getString("avatar"));
 				return user;
 			}
 			return null;
@@ -141,7 +144,7 @@ public class UserDao {
 				user.setFacebook(rs.getString("facebook"));
 				user.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				user.setUpdateAt(rs.getTimestamp("updatedAt").getTime());
-				// TODO set avator
+				user.setAvatar(rs.getString("avatar"));
 				return user;
 			}
 			return null;
@@ -228,6 +231,41 @@ public class UserDao {
 
 		return false;
 
+	}
+	
+	public List<User> getUsers(String username) throws SQLException{
+		Connection conn = db.getConnection();
+		CallableStatement c = null;
+		List<User> users = new ArrayList<User>();
+
+		try {
+			c = conn.prepareCall("{call get_users(?)}");
+			c.setString(1, username);
+
+			// c.registerOutParameter(3, Types.INTEGER);
+			ResultSet rs = c.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setUserId(rs.getLong("id"));
+				user.setUsername(rs.getString("username"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setAccountType(rs.getString("accountType"));
+				user.setFacebook(rs.getString("facebook"));
+				user.setCreatedAt(rs.getTimestamp("createdAt").getTime());
+				user.setUpdateAt(rs.getTimestamp("updatedAt").getTime());
+				user.setAvatar(rs.getString("avatar"));
+				users.add(user);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			c.close();
+			db.dispose();
+		}
+
+		return users;
 	}
 	
 	public static void main(String[] args) throws SQLException {

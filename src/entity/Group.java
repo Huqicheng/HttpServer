@@ -15,10 +15,19 @@ public class Group implements java.io.Serializable{
     long projectId;
     long creatorId;
     String cover;
+    long deadline;
     
     
 
-    public long getCreatorId() {
+    public long getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(long deadline) {
+		this.deadline = deadline;
+	}
+
+	public long getCreatorId() {
 		return creatorId;
 	}
 
