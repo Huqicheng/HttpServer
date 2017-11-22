@@ -98,11 +98,11 @@ public class EventService {
 	public static void main(String[] args) throws SQLException {
 		Event event = new Event();
 		event.setAssignedBy(2);
-		event.setAssignedTo(2);
+		event.setAssignedTo(3);
 		event.setDeadLine(new Date().getTime());
 		event.setDescription("232323");
 		event.setEventTitle("title2");
-		event.setGroupId(2);
+		event.setGroupId(1);
 		
 		System.out.println(new Gson().toJson(event));
 		

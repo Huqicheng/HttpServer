@@ -47,6 +47,9 @@
        <action name="addApplicaton" class="action.ApplicationAction"  method="addApplicaton"/>
        <action name="finishApplication" class="action.ApplicationAction"  method="finishApplication"/>
        
+       <action name="getGroupsIncludingPersonal" class="action.ProgressAction"  method="getGroupsIncludingPersonal"/>
+        <action name="getGroupStats" class="action.ProgressAction"  method="getGroupStats"/>
+       
     </package>
     
     
