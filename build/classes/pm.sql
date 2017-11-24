@@ -10,9 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50627
 File Encoding         : 65001
 
-Date: 2017-11-18 19:36:13
+Date: 2017-11-22 17:08:59
 */
-use pm;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -56,18 +56,20 @@ CREATE TABLE `event` (
   PRIMARY KEY (`id`),
   KEY `event_user` (`assignedBy`),
   CONSTRAINT `event_user` FOREIGN KEY (`assignedBy`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of event
 -- ----------------------------
-INSERT INTO `event` VALUES ('1', '2', 'new task', 'new', '2017-12-17 15:15:00', '2', 'started', '2017-11-04 23:42:05', '2', '2017-11-16 14:51:20');
-INSERT INTO `event` VALUES ('2', '2', 'newtitle', 'newdescription', '2017-11-05 00:00:00', '2', 'started', '2017-11-04 23:42:29', '2', '2017-11-11 18:53:13');
+INSERT INTO `event` VALUES ('1', '2', 'new task', 'new', '2017-12-17 15:15:00', '2', 'finished', '2017-11-04 23:42:05', '2', '2017-11-19 14:20:27');
+INSERT INTO `event` VALUES ('2', '2', 'newtitle', 'newdescription', '2017-11-05 00:00:00', '2', 'finished', '2017-11-04 23:42:29', '2', '2017-11-19 14:20:27');
 INSERT INTO `event` VALUES ('3', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:05:58', '2', '2017-11-05 13:05:58');
 INSERT INTO `event` VALUES ('4', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:46:09', '2', '2017-11-05 13:46:09');
 INSERT INTO `event` VALUES ('5', '2', 'title2', '232323', '2017-11-11 18:04:02', '2', 'started', '2017-11-11 18:04:02', '2', '2017-11-11 18:04:02');
 INSERT INTO `event` VALUES ('6', '2', 'title2', '232323', '2017-11-11 18:05:55', '2', 'started', '2017-11-11 18:05:56', '2', '2017-11-11 18:05:56');
 INSERT INTO `event` VALUES ('7', '2', 'title2', '232323', '2017-11-11 18:06:38', '2', 'started', '2017-11-11 18:06:38', '2', '2017-11-11 18:06:38');
+INSERT INTO `event` VALUES ('8', '1', 'title2', '232323', '2017-11-22 14:47:26', '2', 'started', '2017-11-22 14:47:26', '2', '2017-11-22 14:47:26');
+INSERT INTO `event` VALUES ('9', '1', 'title2', '232323', '2017-11-22 15:00:55', '2', 'started', '2017-11-22 15:00:56', '3', '2017-11-22 15:00:56');
 
 -- ----------------------------
 -- Table structure for `group`
@@ -84,16 +86,17 @@ CREATE TABLE `group` (
   PRIMARY KEY (`id`),
   KEY `group_project` (`project_id`),
   CONSTRAINT `group_project` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of group
 -- ----------------------------
-INSERT INTO `group` VALUES (null, '1', 'personal', null, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `group` VALUES (null, '1', 'personal', null, '1', '2017-11-22 16:26:31', '2017-11-22 16:26:33');
 INSERT INTO `group` VALUES ('images/group/2.gif', '2', 'G8', 'description', '2', '2017-11-04 23:21:45', '2017-11-04 23:21:48');
 INSERT INTO `group` VALUES (null, '3', 'Group For test service', 'desc', '3', '2017-11-14 10:44:45', '2017-11-14 10:44:45');
 INSERT INTO `group` VALUES (null, '4', 'Group For test service', 'desc', '4', '2017-11-14 10:49:16', '2017-11-14 10:49:16');
 INSERT INTO `group` VALUES (null, '5', 'Group For test service', 'desc', '7', '2017-11-14 10:56:34', '2017-11-14 10:56:34');
+INSERT INTO `group` VALUES (null, '6', 'Group For 5555555555555', '66666666666666', '8', '2017-11-19 11:41:18', '2017-11-19 11:41:18');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -110,7 +113,7 @@ CREATE TABLE `message` (
   KEY `message_ibfk_group` (`group_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `message_ibfk_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of message
@@ -201,6 +204,24 @@ INSERT INTO `message` VALUES ('105', '{\"body\":\"4545454545\",\"username\":\"q4
 INSERT INTO `message` VALUES ('106', '{\"body\":\"3333333\",\"username\":\"q45hu\"}', '2017-11-16 14:52:38', '5', '2');
 INSERT INTO `message` VALUES ('107', '{\"body\":\"3434343434\",\"username\":\"y300fang\"}', '2017-11-16 14:53:24', '4', '3');
 INSERT INTO `message` VALUES ('108', '{\"body\":\"45454\",\"username\":\"q45hu\"}', '2017-11-18 18:03:17', '2', '2');
+INSERT INTO `message` VALUES ('109', '{\"body\":\"22222\",\"username\":\"q45hu\"}', '2017-11-19 15:42:36', '2', '2');
+INSERT INTO `message` VALUES ('110', '{\"body\":\"hello\",\"username\":\"q45hu\"}', '2017-11-19 15:42:42', '2', '2');
+INSERT INTO `message` VALUES ('111', '{\"body\":\"hello there\",\"username\":\"q45hu\"}', '2017-11-19 15:43:03', '2', '2');
+INSERT INTO `message` VALUES ('112', '{\"body\":\"2222\",\"username\":\"q45hu\"}', '2017-11-19 15:45:42', '2', '2');
+INSERT INTO `message` VALUES ('113', '{\"body\":\"2323232\",\"username\":\"q45hu\"}', '2017-11-19 15:47:50', '2', '2');
+INSERT INTO `message` VALUES ('114', '{\"body\":\"3333\",\"username\":\"q45hu\"}', '2017-11-19 16:16:30', '3', '2');
+INSERT INTO `message` VALUES ('115', '{\"body\":\"23223\",\"username\":\"q45hu\"}', '2017-11-19 16:26:18', '2', '2');
+INSERT INTO `message` VALUES ('116', '{\"body\":\"44444\",\"username\":\"q45hu\"}', '2017-11-19 16:27:00', '2', '2');
+INSERT INTO `message` VALUES ('117', '{\"body\":\"2323232\",\"username\":\"q45hu\"}', '2017-11-19 16:27:11', '2', '2');
+INSERT INTO `message` VALUES ('118', '{\"body\":\"23232323\",\"username\":\"q45hu\"}', '2017-11-19 16:29:09', '2', '2');
+INSERT INTO `message` VALUES ('119', '{\"body\":\"123\",\"username\":\"q45hu\"}', '2017-11-19 16:35:03', '2', '2');
+INSERT INTO `message` VALUES ('120', '{\"body\":\"123\",\"username\":\"q45hu\"}', '2017-11-19 16:37:22', '2', '2');
+INSERT INTO `message` VALUES ('121', '{\"body\":\"12121\",\"username\":\"q45hu\"}', '2017-11-19 16:37:41', '2', '2');
+INSERT INTO `message` VALUES ('122', '{\"body\":\"12121221\",\"username\":\"q45hu\"}', '2017-11-19 16:37:58', '2', '2');
+INSERT INTO `message` VALUES ('123', '{\"body\":\"12121212\",\"username\":\"q45hu\"}', '2017-11-19 16:38:09', '2', '2');
+INSERT INTO `message` VALUES ('124', '{\"body\":\"123\",\"username\":\"q45hu\"}', '2017-11-19 16:46:09', '2', '2');
+INSERT INTO `message` VALUES ('125', '{\"body\":\"222\",\"username\":\"q45hu\"}', '2017-11-19 16:47:21', '2', '2');
+INSERT INTO `message` VALUES ('126', '{\"body\":\"1212121212\",\"username\":\"q45hu\"}', '2017-11-19 16:49:21', '2', '2');
 
 -- ----------------------------
 -- Table structure for `project`
@@ -217,18 +238,19 @@ CREATE TABLE `project` (
   PRIMARY KEY (`id`),
   KEY `project_user` (`creator`),
   CONSTRAINT `project_user` FOREIGN KEY (`creator`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO `project` VALUES ('1', 'personal', null, null, '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `project` VALUES ('1', 'personal', null, '2017-11-22 17:04:19', '1', '2017-11-22 16:26:17', '2017-11-22 16:26:20');
 INSERT INTO `project` VALUES ('2', 'pm', 'description', '2017-11-26 23:20:47', '2', '2017-11-04 23:20:55', '2017-11-04 23:21:03');
 INSERT INTO `project` VALUES ('3', 'test service', 'desc', '2017-11-14 10:44:45', '2', '2017-11-14 10:44:45', '2017-11-14 10:44:45');
 INSERT INTO `project` VALUES ('4', 'test service', 'desc', '2017-11-14 10:49:16', '2', '2017-11-14 10:49:16', '2017-11-14 10:49:16');
 INSERT INTO `project` VALUES ('5', 'test service', 'desc', '2017-11-14 10:55:08', '2', '2017-11-14 10:55:08', '2017-11-14 10:55:08');
 INSERT INTO `project` VALUES ('6', 'test service', 'desc', '2017-11-14 10:56:06', '2', '2017-11-14 10:56:06', '2017-11-14 10:56:06');
 INSERT INTO `project` VALUES ('7', 'test service', 'desc', '2017-11-14 10:56:34', '2', '2017-11-14 10:56:34', '2017-11-14 10:56:34');
+INSERT INTO `project` VALUES ('8', '5555555555555', '66666666666666', '2017-12-20 00:00:00', '2', '2017-11-19 11:41:18', '2017-11-19 11:41:18');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -252,7 +274,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'sys_admin', null, null, null, null, '0000-00-00 00:00:00', '0000-00-00 00:00:00', null);
+INSERT INTO `user` VALUES ('1', 'sys_admin', null, null, null, null, '2017-11-22 16:26:07', '2017-11-22 16:26:04', null);
 INSERT INTO `user` VALUES ('2', 'q45hu', 'q45hu@uwaterloo.ca', '123', 'normal', 'q45hu', '2017-11-04 23:19:49', '2017-11-04 23:19:54', 'images/user/2.gif');
 INSERT INTO `user` VALUES ('3', 'y300fang', 'y300fang@uwaterloo.ca', '123', 'normal', 'facebook', '2017-11-15 17:29:39', '2017-11-15 17:29:39', null);
 
@@ -276,6 +298,7 @@ INSERT INTO `user_group` VALUES ('2', '2');
 INSERT INTO `user_group` VALUES ('3', '2');
 INSERT INTO `user_group` VALUES ('4', '2');
 INSERT INTO `user_group` VALUES ('5', '2');
+INSERT INTO `user_group` VALUES ('6', '2');
 INSERT INTO `user_group` VALUES ('2', '3');
 INSERT INTO `user_group` VALUES ('3', '3');
 INSERT INTO `user_group` VALUES ('4', '3');
@@ -348,7 +371,7 @@ select max(id) into gid from `group`;
 
 insert into user_group(user_id, group_id) values(creator,gid);
 
-select `group`.*, creator, projectDeadline
+select `group`.*, creator, projectDeadline,projectName
 from `group`,project
 where `group`.project_id = project.id
 and `group`.id =gid;
@@ -542,7 +565,8 @@ DROP PROCEDURE IF EXISTS `get_event_by_group`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_event_by_group`(
 IN groupId int,
-IN userId int
+IN userId int,
+IN stat varchar(255)
 )
 BEGIN
 
@@ -550,7 +574,8 @@ select event.*,groupName
 from event,`group`
 where event.assignedTo = userId
 and event.group_id = `group`.id
-and `group`.id = groupId;
+and `group`.id = groupId
+and eventStatus = stat;
 
 end
 ;;
@@ -583,9 +608,93 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_groups_of_user`(
 IN user_id int
 )
 BEGIN   
-	SELECT  g.*,creator,projectDeadline
+	SELECT  g.*,creator,projectDeadline,projectName
 FROM `user` AS u, user_group AS ug, `group` AS g, project as p
   WHERE ug.user_id = u.id and u.id=user_id and g.id=ug.group_id and p.id = g.project_id;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `get_groups_of_user_includeing_personal`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `get_groups_of_user_includeing_personal`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_groups_of_user_includeing_personal`(
+IN user_id int
+)
+BEGIN  
+ 
+SELECT  DISTINCT g.*,creator,projectDeadline,projectName
+FROM user_group AS ug, `group` AS g, project as p
+WHERE ug.user_id=2 and (g.id=ug.group_id or g.id = 1) and p.id = g.project_id;
+
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `get_group_stat`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `get_group_stat`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_group_stat`(
+IN user_id int
+)
+BEGIN   
+
+select t1.groupid as groupid, cnt1 as finished,cnt2 as started
+from
+(
+select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt1
+from `group`,project,`event`,user_group
+where `group`.project_id = project.id
+and `group`.id = `event`.group_id
+and user_group.user_id = `event`.assignedTo
+and (`group`.id = user_group.group_id or `group`.id = 1)
+and `event`.assignedTo = user_id
+and `event`.eventStatus = "finished"
+group by `group`.id) t1
+LEFT JOIN
+(select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt2
+from `group`,project,`event`,user_group
+where `group`.project_id = project.id
+and `group`.id = `event`.group_id
+and user_group.user_id = `event`.assignedTo
+and (`group`.id = user_group.group_id or `group`.id = 1)
+and `event`.assignedTo = user_id
+and `event`.eventStatus = "started"
+group by `group`.id) t2
+on t1.groupid = t2.groupid
+union
+select t1.groupid as groupid, cnt1 ,cnt2
+from
+(
+select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt2
+from `group`,project,`event`,user_group
+where `group`.project_id = project.id
+and `group`.id = `event`.group_id
+and user_group.user_id = `event`.assignedTo
+and (`group`.id = user_group.group_id or `group`.id = 1)
+and `event`.assignedTo = user_id
+and `event`.eventStatus = "started"
+group by `group`.id) t1
+left JOIN
+(select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt1
+from `group`,project,`event`,user_group
+where `group`.project_id = project.id
+and `group`.id = `event`.group_id
+and user_group.user_id = `event`.assignedTo
+and (`group`.id = user_group.group_id or `group`.id = 1)
+and `event`.assignedTo = user_id
+and `event`.eventStatus = "finished"
+group by `group`.id) t2
+on t1.groupid = t2.groupid;
+
+ 
+
+
+
 END
 ;;
 DELIMITER ;

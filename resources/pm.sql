@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50627
 File Encoding         : 65001
 
-Date: 2017-11-22 17:08:59
+Date: 2017-11-23 21:25:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,8 +68,8 @@ INSERT INTO `event` VALUES ('4', '2', 'title2', '232323', '2017-11-05 00:00:00',
 INSERT INTO `event` VALUES ('5', '2', 'title2', '232323', '2017-11-11 18:04:02', '2', 'started', '2017-11-11 18:04:02', '2', '2017-11-11 18:04:02');
 INSERT INTO `event` VALUES ('6', '2', 'title2', '232323', '2017-11-11 18:05:55', '2', 'started', '2017-11-11 18:05:56', '2', '2017-11-11 18:05:56');
 INSERT INTO `event` VALUES ('7', '2', 'title2', '232323', '2017-11-11 18:06:38', '2', 'started', '2017-11-11 18:06:38', '2', '2017-11-11 18:06:38');
-INSERT INTO `event` VALUES ('8', '1', 'title2', '232323', '2017-11-22 14:47:26', '2', 'started', '2017-11-22 14:47:26', '2', '2017-11-22 14:47:26');
-INSERT INTO `event` VALUES ('9', '1', 'title2', '232323', '2017-11-22 15:00:55', '2', 'started', '2017-11-22 15:00:56', '3', '2017-11-22 15:00:56');
+INSERT INTO `event` VALUES ('8', '2', 'title2', '232323', '2017-11-22 14:47:26', '2', 'started', '2017-11-22 14:47:26', '2', '2017-11-22 14:47:26');
+INSERT INTO `event` VALUES ('9', '2', 'title2', '232323', '2017-11-22 15:00:55', '2', 'started', '2017-11-22 15:00:56', '3', '2017-11-22 15:00:56');
 
 -- ----------------------------
 -- Table structure for `group`
@@ -91,7 +91,7 @@ CREATE TABLE `group` (
 -- ----------------------------
 -- Records of group
 -- ----------------------------
-INSERT INTO `group` VALUES (null, '1', 'personal', null, '1', '2017-11-22 16:26:31', '2017-11-22 16:26:33');
+INSERT INTO `group` VALUES (null, '1', 'Personal', null, '1', '2017-11-22 16:26:31', '2017-11-22 16:26:33');
 INSERT INTO `group` VALUES ('images/group/2.gif', '2', 'G8', 'description', '2', '2017-11-04 23:21:45', '2017-11-04 23:21:48');
 INSERT INTO `group` VALUES (null, '3', 'Group For test service', 'desc', '3', '2017-11-14 10:44:45', '2017-11-14 10:44:45');
 INSERT INTO `group` VALUES (null, '4', 'Group For test service', 'desc', '4', '2017-11-14 10:49:16', '2017-11-14 10:49:16');
@@ -113,7 +113,7 @@ CREATE TABLE `message` (
   KEY `message_ibfk_group` (`group_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `message_ibfk_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of message
@@ -222,6 +222,28 @@ INSERT INTO `message` VALUES ('123', '{\"body\":\"12121212\",\"username\":\"q45h
 INSERT INTO `message` VALUES ('124', '{\"body\":\"123\",\"username\":\"q45hu\"}', '2017-11-19 16:46:09', '2', '2');
 INSERT INTO `message` VALUES ('125', '{\"body\":\"222\",\"username\":\"q45hu\"}', '2017-11-19 16:47:21', '2', '2');
 INSERT INTO `message` VALUES ('126', '{\"body\":\"1212121212\",\"username\":\"q45hu\"}', '2017-11-19 16:49:21', '2', '2');
+INSERT INTO `message` VALUES ('127', '{\"body\":\"121212121\",\"username\":\"q45hu\"}', '2017-11-22 21:30:44', '2', '2');
+INSERT INTO `message` VALUES ('128', '{\"body\":\"12121212\",\"username\":\"q45hu\"}', '2017-11-22 22:03:45', '2', '2');
+INSERT INTO `message` VALUES ('129', '{\"body\":\"2323232\",\"username\":\"q45hu\"}', '2017-11-22 22:03:47', '2', '2');
+INSERT INTO `message` VALUES ('130', '{\"body\":\"111\",\"username\":\"q45hu\"}', '2017-11-22 22:03:54', '2', '2');
+INSERT INTO `message` VALUES ('131', '{\"body\":\"1212121212\",\"username\":\"q45hu\"}', '2017-11-22 22:07:20', '2', '2');
+INSERT INTO `message` VALUES ('132', '{\"body\":\"1212121212\",\"username\":\"q45hu\"}', '2017-11-22 22:08:33', '2', '2');
+INSERT INTO `message` VALUES ('133', '{\"body\":\"1232323\",\"username\":\"y300fang\"}', '2017-11-22 22:09:03', '4', '3');
+INSERT INTO `message` VALUES ('134', '{\"body\":\"qwqwqwqwqwqw\",\"username\":\"y300fang\"}', '2017-11-22 22:09:15', '2', '3');
+INSERT INTO `message` VALUES ('135', '{\"body\":\"12\",\"username\":\"q45hu\"}', '2017-11-22 22:12:08', '2', '2');
+INSERT INTO `message` VALUES ('136', '{\"body\":\"2323232\",\"username\":\"y300fang\"}', '2017-11-22 22:12:30', '2', '3');
+INSERT INTO `message` VALUES ('137', '{\"body\":\"2323232323\",\"username\":\"q45hu\"}', '2017-11-22 22:54:06', '2', '2');
+INSERT INTO `message` VALUES ('138', '{\"body\":\"1111\",\"username\":\"q45hu\"}', '2017-11-22 23:43:54', '2', '2');
+INSERT INTO `message` VALUES ('139', '{\"body\":\"11111\",\"username\":\"q45hu\"}', '2017-11-22 23:52:09', '2', '2');
+INSERT INTO `message` VALUES ('140', '{\"body\":\"3333\",\"username\":\"q45hu\"}', '2017-11-23 00:01:24', '2', '2');
+INSERT INTO `message` VALUES ('141', '{\"body\":\"444\",\"username\":\"q45hu\"}', '2017-11-23 00:01:26', '2', '2');
+INSERT INTO `message` VALUES ('142', '{\"body\":\"555\",\"username\":\"q45hu\"}', '2017-11-23 00:01:27', '2', '2');
+INSERT INTO `message` VALUES ('143', '{\"body\":\"666\",\"username\":\"q45hu\"}', '2017-11-23 00:01:29', '2', '2');
+INSERT INTO `message` VALUES ('144', '{\"body\":\"444\",\"username\":\"q45hu\"}', '2017-11-23 00:01:30', '2', '2');
+INSERT INTO `message` VALUES ('145', '{\"body\":\"33\",\"username\":\"q45hu\"}', '2017-11-23 00:01:30', '2', '2');
+INSERT INTO `message` VALUES ('146', '{\"body\":\"3222\",\"username\":\"q45hu\"}', '2017-11-23 00:01:32', '2', '2');
+INSERT INTO `message` VALUES ('147', '{\"body\":\"2343434\",\"username\":\"q45hu\"}', '2017-11-23 00:01:34', '2', '2');
+INSERT INTO `message` VALUES ('148', '{\"body\":\"3333\",\"username\":\"q45hu\"}', '2017-11-23 00:02:10', '3', '2');
 
 -- ----------------------------
 -- Table structure for `project`
@@ -565,18 +587,22 @@ DROP PROCEDURE IF EXISTS `get_event_by_group`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_event_by_group`(
 IN groupId int,
-IN userId int,
-IN stat varchar(255)
+IN userId int
 )
 BEGIN
-
+if groupId = 1 THEN
 select event.*,groupName
 from event,`group`
 where event.assignedTo = userId
 and event.group_id = `group`.id
+order by `event`.eventDeadline asc;
+ELSE
+select event.*,groupName
+from event,`group`
+where event.group_id = `group`.id
 and `group`.id = groupId
-and eventStatus = stat;
-
+order by `event`.eventDeadline asc;
+end IF;
 end
 ;;
 DELIMITER ;
@@ -627,7 +653,7 @@ BEGIN
  
 SELECT  DISTINCT g.*,creator,projectDeadline,projectName
 FROM user_group AS ug, `group` AS g, project as p
-WHERE ug.user_id=2 and (g.id=ug.group_id or g.id = 1) and p.id = g.project_id;
+WHERE ug.user_id = user_id AND (g.id=ug.group_id ) and p.id = g.project_id;
 
 END
 ;;
@@ -642,27 +668,30 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_group_stat`(
 IN user_id int
 )
 BEGIN   
+declare startNum int;
+declare finishNum int;
+select count(event.id) into startNum
+from event
+where event.assignedTo = user_id
+and `event`.eventStatus = "started";
+
+select count(event.id) into finishNum
+from event
+where event.assignedTo = user_id
+and `event`.eventStatus = "finished";
 
 select t1.groupid as groupid, cnt1 as finished,cnt2 as started
 from
 (
-select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt1
-from `group`,project,`event`,user_group
-where `group`.project_id = project.id
-and `group`.id = `event`.group_id
-and user_group.user_id = `event`.assignedTo
-and (`group`.id = user_group.group_id or `group`.id = 1)
-and `event`.assignedTo = user_id
+select `group`.id as groupid,COUNT(`event`.id) as cnt1
+from `group`,`event`
+where `group`.id = `event`.group_id
 and `event`.eventStatus = "finished"
 group by `group`.id) t1
 LEFT JOIN
-(select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt2
-from `group`,project,`event`,user_group
-where `group`.project_id = project.id
-and `group`.id = `event`.group_id
-and user_group.user_id = `event`.assignedTo
-and (`group`.id = user_group.group_id or `group`.id = 1)
-and `event`.assignedTo = user_id
+(select `group`.id as groupid,COUNT(`event`.id) as cnt2
+from `group`,`event`
+where `group`.id = `event`.group_id
 and `event`.eventStatus = "started"
 group by `group`.id) t2
 on t1.groupid = t2.groupid
@@ -670,26 +699,20 @@ union
 select t1.groupid as groupid, cnt1 ,cnt2
 from
 (
-select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt2
-from `group`,project,`event`,user_group
-where `group`.project_id = project.id
-and `group`.id = `event`.group_id
-and user_group.user_id = `event`.assignedTo
-and (`group`.id = user_group.group_id or `group`.id = 1)
-and `event`.assignedTo = user_id
+select `group`.id as groupid,COUNT(`event`.id) as cnt2
+from `group`,`event`
+where `group`.id = `event`.group_id
 and `event`.eventStatus = "started"
 group by `group`.id) t1
-left JOIN
-(select `group`.id as groupid,COUNT(DISTINCT(`event`.id)) as cnt1
-from `group`,project,`event`,user_group
-where `group`.project_id = project.id
-and `group`.id = `event`.group_id
-and user_group.user_id = `event`.assignedTo
-and (`group`.id = user_group.group_id or `group`.id = 1)
-and `event`.assignedTo = user_id
+LEFT JOIN
+(select `group`.id as groupid,COUNT(`event`.id) as cnt1
+from `group`,`event`
+where `group`.id = `event`.group_id
 and `event`.eventStatus = "finished"
 group by `group`.id) t2
-on t1.groupid = t2.groupid;
+on t1.groupid = t2.groupid
+UNION
+select 1 as groupid,finishNum as cnt1 ,startNum as cnt2;
 
  
 
@@ -719,6 +742,51 @@ order by message.`timestamp` DESC
 limit 0,cnt;
 
   
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `get_personal_events`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `get_personal_events`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_personal_events`(
+IN user_id int
+)
+BEGIN
+select event.*,groupName
+from event,`group`
+where event.assignedTo = user_id
+and event.group_id = `group`.id
+order by `event`.eventDeadline asc;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `get_personal_event_stat`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `get_personal_event_stat`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_personal_event_stat`(
+IN user_id int
+)
+BEGIN
+declare startNum int;
+declare finishNum int;
+select count(event.id) into startNum
+from event
+where event.assignedTo = user_id
+and `event`.eventStatus = "started";
+
+select count(event.id) into finishNum
+from event
+where event.assignedTo = user_id
+and `event`.eventStatus = "finished";
+
+select startNum,finishNum;
+
 END
 ;;
 DELIMITER ;

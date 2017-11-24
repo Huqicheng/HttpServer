@@ -2,6 +2,7 @@ package service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,15 @@ public class ProgressService {
 	
 	public List<Group> getGroupsIncludingPersonal(int user_id){
 		try {
-			return progressDao.getGroupsIncludingPersonal(user_id);
+			List<Group> groups = progressDao.getGroupsIncludingPersonal(user_id);
+			Group group = new Group();
+			group.setDeadline(new Date().getTime());
+			group.setGroupName("Personal");
+			group.setGroupId(1);
+			group.setCreatorId(user_id);
+			groups.add(0,group);
+			
+			return groups;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

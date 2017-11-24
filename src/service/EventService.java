@@ -33,9 +33,9 @@ public class EventService {
 		
 	}
 	
-	public List<Event> getEventByGroup(int user_id, int group_id,String status){
+	public List<Event> getEventByGroup(int user_id, int group_id){
 		try {
-			return eventDao.getEventByGroup(user_id, group_id,status);
+			return eventDao.getEventByGroup(user_id, group_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

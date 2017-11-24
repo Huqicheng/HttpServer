@@ -243,7 +243,7 @@ public class EventAction {
 	
 	public void getEventsByGroup(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-		if(user_id == 0 || group_id == 0 || status == null){
+		if(user_id == 0 || group_id == 0 ){
 			try {
 				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
@@ -253,7 +253,7 @@ public class EventAction {
 			
 		}
 		
-		List<Event> events = new EventService().getEventByGroup(user_id, group_id,status);
+		List<Event> events = new EventService().getEventByGroup(user_id, group_id);
 		
 		try {
 			StrutsUtil.write(response,new Gson().toJson(events));
