@@ -114,9 +114,11 @@ public class EventAction {
 	
 	public void updateEventBatches(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-		System.out.println(status);
+		
 		if(arrEvents == null || status == null || 
-				(!status.equals(EventStatus.started.toString() )&& !status.equals(EventStatus.finished.toString()))){
+				(!status.equals(EventStatus.started.toString() )
+						&& !status.equals(EventStatus.finished.toString())
+						&& !status.equals(EventStatus.dropped.toString()))){
 			try {
 				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
@@ -316,7 +318,9 @@ public class EventAction {
 	
 	public void updateStatusOfEvent(){
 		HttpServletResponse response = ServletActionContext.getResponse();
-		if(event_id == 0 || status == null || (!status.equals(EventStatus.started.toString() )&& !status.equals(EventStatus.finished.toString()))){
+		if(event_id == 0 || status == null || (!status.equals(EventStatus.started.toString() )
+				&& !status.equals(EventStatus.finished.toString())
+				&& !status.equals(EventStatus.dropped.toString()))){
 			try {
 				StrutsUtil.write(response,ExecResult.failed.toString());
 			} catch (IOException e) {
