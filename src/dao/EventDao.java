@@ -90,6 +90,7 @@ private Dbconn db = null;
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				event.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
+				event.setAssignByName(rs.getString("assignByName"));
 				events.add(event);
 			}
 		
@@ -195,7 +196,7 @@ private Dbconn db = null;
 				res.setEventStatus(rs.getString("eventStatus"));
 				res.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				res.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
-				
+				event.setAssignByName(rs.getString("assignByName"));
 				res.setGroupName(rs.getString("groupName"));
 			}
 			
@@ -241,7 +242,7 @@ private Dbconn db = null;
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				event.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
-				
+				event.setAssignByName(rs.getString("assignByName"));
 				event.setGroupName(rs.getString("groupName"));
 				
 				return event;
@@ -289,7 +290,7 @@ private Dbconn db = null;
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				event.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
-				
+				event.setAssignByName(rs.getString("assignByName"));
 				event.setGroupName(rs.getString("groupName"));
 				
 				events.add(event);
@@ -329,7 +330,7 @@ private Dbconn db = null;
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setCreatedAt(rs.getTimestamp("createdAt").getTime());
 				event.setUpdatedAt(rs.getTimestamp("updatedAt").getTime());
-				
+				event.setAssignByName(rs.getString("assignByName"));
 				event.setGroupName(rs.getString("groupName"));
 				
 			}

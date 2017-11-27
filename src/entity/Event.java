@@ -20,12 +20,18 @@ public class Event implements java.io.Serializable{
     long updatedAt;
     int groupId;
     String groupName;
-    
-    
-    
+    String assignByName;
 
     
-    public String getGroupName() {
+    public String getAssignByName() {
+		return assignByName;
+	}
+
+	public void setAssignByName(String assignByName) {
+		this.assignByName = assignByName;
+	}
+
+	public String getGroupName() {
 		return groupName;
 	}
 

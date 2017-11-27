@@ -10,10 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50627
 File Encoding         : 65001
 
-Date: 2017-11-23 21:25:26
+Date: 2017-11-27 10:38:05
 */
-use pm;
 
+use pm;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -64,13 +64,13 @@ CREATE TABLE `event` (
 -- ----------------------------
 INSERT INTO `event` VALUES ('1', '2', 'new task', 'new', '2017-12-17 15:15:00', '2', 'finished', '2017-11-04 23:42:05', '2', '2017-11-19 14:20:27');
 INSERT INTO `event` VALUES ('2', '2', 'newtitle', 'newdescription', '2017-11-05 00:00:00', '2', 'finished', '2017-11-04 23:42:29', '2', '2017-11-19 14:20:27');
-INSERT INTO `event` VALUES ('3', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:05:58', '2', '2017-11-05 13:05:58');
-INSERT INTO `event` VALUES ('4', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'started', '2017-11-05 13:46:09', '2', '2017-11-05 13:46:09');
-INSERT INTO `event` VALUES ('5', '2', 'title2', '232323', '2017-11-11 18:04:02', '2', 'started', '2017-11-11 18:04:02', '2', '2017-11-11 18:04:02');
-INSERT INTO `event` VALUES ('6', '2', 'title2', '232323', '2017-11-11 18:05:55', '2', 'started', '2017-11-11 18:05:56', '2', '2017-11-11 18:05:56');
-INSERT INTO `event` VALUES ('7', '2', 'title2', '232323', '2017-11-11 18:06:38', '2', 'started', '2017-11-11 18:06:38', '2', '2017-11-11 18:06:38');
-INSERT INTO `event` VALUES ('8', '2', 'title2', '232323', '2017-11-22 14:47:26', '2', 'started', '2017-11-22 14:47:26', '2', '2017-11-22 14:47:26');
-INSERT INTO `event` VALUES ('9', '2', 'title2', '232323', '2017-11-22 15:00:55', '2', 'started', '2017-11-22 15:00:56', '3', '2017-11-22 15:00:56');
+INSERT INTO `event` VALUES ('3', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'finished', '2017-11-05 13:05:58', '2', '2017-11-26 15:58:04');
+INSERT INTO `event` VALUES ('4', '2', 'title2', '232323', '2017-11-05 00:00:00', '2', 'finished', '2017-11-05 13:46:09', '2', '2017-11-26 15:58:04');
+INSERT INTO `event` VALUES ('5', '2', 'title2', '232323', '2017-11-11 18:04:02', '2', 'finished', '2017-11-11 18:04:02', '2', '2017-11-25 18:36:29');
+INSERT INTO `event` VALUES ('6', '2', 'title2', '232323', '2017-11-11 18:05:55', '2', 'finished', '2017-11-11 18:05:56', '2', '2017-11-25 18:36:30');
+INSERT INTO `event` VALUES ('7', '2', 'title2', '232323', '2017-11-11 18:06:38', '2', 'finished', '2017-11-11 18:06:38', '2', '2017-11-26 18:30:31');
+INSERT INTO `event` VALUES ('8', '2', 'title2', '232323', '2017-11-22 14:47:26', '2', 'dropped', '2017-11-22 14:47:26', '2', '2017-11-26 18:30:06');
+INSERT INTO `event` VALUES ('9', '2', 'title2', '232323', '2017-11-22 15:00:55', '2', 'dropped', '2017-11-22 15:00:56', '3', '2017-11-26 18:30:16');
 
 -- ----------------------------
 -- Table structure for `group`
@@ -114,7 +114,7 @@ CREATE TABLE `message` (
   KEY `message_ibfk_group` (`group_id`),
   CONSTRAINT `message_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `message_ibfk_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of message
@@ -245,6 +245,17 @@ INSERT INTO `message` VALUES ('145', '{\"body\":\"33\",\"username\":\"q45hu\"}',
 INSERT INTO `message` VALUES ('146', '{\"body\":\"3222\",\"username\":\"q45hu\"}', '2017-11-23 00:01:32', '2', '2');
 INSERT INTO `message` VALUES ('147', '{\"body\":\"2343434\",\"username\":\"q45hu\"}', '2017-11-23 00:01:34', '2', '2');
 INSERT INTO `message` VALUES ('148', '{\"body\":\"3333\",\"username\":\"q45hu\"}', '2017-11-23 00:02:10', '3', '2');
+INSERT INTO `message` VALUES ('149', '{\"body\":\"222222\",\"username\":\"q45hu\"}', '2017-11-25 01:34:34', '2', '2');
+INSERT INTO `message` VALUES ('150', '{\"body\":\"3333\",\"username\":\"q45hu\"}', '2017-11-25 01:34:37', '2', '2');
+INSERT INTO `message` VALUES ('151', '{\"body\":\"4444\",\"username\":\"q45hu\"}', '2017-11-25 01:34:39', '2', '2');
+INSERT INTO `message` VALUES ('152', '{\"body\":\"222\",\"username\":\"q45hu\"}', '2017-11-26 15:57:44', '2', '2');
+INSERT INTO `message` VALUES ('153', '{\"body\":\"121212\",\"username\":\"q45hu\"}', '2017-11-26 16:09:14', '2', '2');
+INSERT INTO `message` VALUES ('154', '{\"body\":\"12121212\",\"username\":\"q45hu\"}', '2017-11-26 16:09:33', '2', '2');
+INSERT INTO `message` VALUES ('155', '{\"body\":\"qqqqq\",\"username\":\"q45hu\"}', '2017-11-26 16:11:52', '2', '2');
+INSERT INTO `message` VALUES ('156', '{\"body\":\"12121212\",\"username\":\"q45hu\"}', '2017-11-26 16:16:32', '2', '2');
+INSERT INTO `message` VALUES ('157', '{\"body\":\"121212\",\"username\":\"q45hu\"}', '2017-11-26 16:16:40', '3', '2');
+INSERT INTO `message` VALUES ('158', '{\"body\":\"11111\",\"username\":\"q45hu\"}', '2017-11-26 18:35:05', '2', '2');
+INSERT INTO `message` VALUES ('159', '{\"body\":\"4444\",\"username\":\"q45hu\"}', '2017-11-26 18:35:40', '2', '2');
 
 -- ----------------------------
 -- Table structure for `project`
@@ -426,9 +437,10 @@ values(group_id,title,description,deadline,assignedBy,assignedTo,status,now(),no
 
 select MAX(id) into eid from event;
 
-select event.*,groupName
-from event,`group`
-where event.id = eid;
+select `event`.*,groupName,`user`.username as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and event.id = eid;
 
 
 end
@@ -571,9 +583,10 @@ IN deadline datetime
 )
 BEGIN
 
-select event.*,groupName
-from event,`group`
-where event.assignedTo = userId
+select `event`.*,groupName,`user`.username as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and event.assignedTo = userId
 and event.group_id = `group`.id
 and date(`event`.eventDeadline) = deadline;
 
@@ -592,15 +605,17 @@ IN userId int
 )
 BEGIN
 if groupId = 1 THEN
-select event.*,groupName
-from event,`group`
-where event.assignedTo = userId
+select `event`.*,groupName,`user`.username as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and event.assignedTo = userId
 and event.group_id = `group`.id
 order by `event`.eventDeadline asc;
 ELSE
-select event.*,groupName
-from event,`group`
-where event.group_id = `group`.id
+select `event`.*,groupName,`user`.username as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and event.group_id = `group`.id
 and `group`.id = groupId
 order by `event`.eventDeadline asc;
 end IF;
@@ -618,9 +633,11 @@ IN eventId int
 )
 BEGIN
 
-select event.*,groupName
-from event,`group`
-where event.id = eventId and event.group_id = `group`.id;
+select `event`.*,groupName,`user`.username  as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and `event`.id = eventId 
+and `event`.group_id = `group`.id;
 
 end
 ;;
@@ -961,9 +978,10 @@ set `event`.assignedTo = assignTo,
 `event`.updatedAt = NOW()
 where `event`.id = event_id;
 
-select event.*,groupName
-from event,`group`
-where event.id = event_id;
+select `event`.*,groupName,`user`.username as assignByName
+from `event`,`group`,`user`
+where `event`.assignedBy = `user`.id
+and event.id = event_id;
 
 end
 ;;
